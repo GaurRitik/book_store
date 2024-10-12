@@ -87,19 +87,27 @@ app.put('/books/:id',async(req,res)=>{
     //this will have the old data
     // const book = await Book.findByIdAndUpdate(id,req.body);
 
-    //new book data
+    //book var will have new book data
     const book = await Book.findByIdAndUpdate(id,req.body,{new:true});
 
     if(!book){
       return res.status(404).send({message:"Book not found"})
     }
+    //3 ways to send response:
+    //1st: to send a single response 
+    return res.status(200).send(book);
+    
+    //2nd: send multiple responses
     // res.status(200).write("Book updated");
-    // return res.send(book);
+    // res.write(JSON.stringify(book));
+    // res.end();
 
-    return res.json({
-      message:"Book updated",
-      book
-    })
+    //3rd : to return multiple responses
+    // return res.status(200).json({
+    //   message:"Book updated",
+    //   book
+    // })
+
   }catch(error){
     console.log(error);
   }
