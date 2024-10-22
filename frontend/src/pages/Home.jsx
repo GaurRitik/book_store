@@ -5,17 +5,15 @@ import axios from "axios";
 import Loading from "../components/Loading";
 
 const Home = () => {
-  const apiURL = "/books";
-  const [books, setBooks] = useState();
+  const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(apiURL);
-        console.log(`res: ${res}`)
-        const booksData = res.data;
+        const res = await axios.get("/api/books");
+        const booksData = res.data.data;
         setBooks(booksData);
-        console.log('booksdata: ',booksData);
+        console.log("booksdata: ", booksData);
         setIsLoading(false);
       } catch (err) {
         console.log(`Fetching books: ${err}`);
@@ -47,7 +45,19 @@ const Home = () => {
               </td>
             </tr>
           ) : (
-            <tr>
+            books.map((book) => (
+              <tr key={book._id}>
+                <td className="border">{book.title}</td>
+                <td className="border">{book.author}</td>
+                <td className="border">{book.publishYear}</td>
+                <td className="flex flex-row items-center justify-center gap-2">
+                  <FaInfoCircle size={20} />
+                  <FaRegEdit size={20} />
+                  <MdDeleteOutline size={20} />
+                </td>
+              </tr>
+            ))
+            /* <tr>
               <td className="border">
                 The Sliding Mr. Bones (Next Stop, Pottersville)
               </td>
@@ -58,9 +68,8 @@ const Home = () => {
                 <FaRegEdit size={20} />
                 <MdDeleteOutline size={20} />
               </td>
-            </tr>
+            </tr> */
           )}
-          {}
         </tbody>
       </table>
     </>
