@@ -6,7 +6,6 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     console.log(req.body);
-    console.log(req.body.title);
     if (!req.body.title || !req.body.author || !req.body.publishYear) {
       return res.status(400).send({
         message: "Send all the reqd. fields",
@@ -81,7 +80,7 @@ router.put("/:id", async (req, res) => {
     }
     //3 ways to send response:
     //1st: to send a single response
-    return res.status(200).send(book);
+    // return res.status(200).send(book);
 
     //2nd: send multiple responses
     // res.status(200).write("Book updated");
@@ -89,10 +88,10 @@ router.put("/:id", async (req, res) => {
     // res.end();
 
     //3rd : to return multiple responses
-    // return res.status(200).json({
-    //   message:"Book updated",
-    //   book
-    // })
+    return res.status(200).json({
+      message:"Book updated",
+      book
+    })
   } catch (error) {
     console.log(error);
   }
