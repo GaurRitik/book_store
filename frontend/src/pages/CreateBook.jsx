@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CreateBook = () => {
   const [book, setBook]= useState({});
@@ -22,6 +23,7 @@ const CreateBook = () => {
       console.log(`Books: ${JSON.stringify(book)}`)
       const res = await axios.post(`/api/books`,book);
       console.log(res.data.message);
+      toast.success("Book created successfully")
       navigate("/");
     }
     catch(err){

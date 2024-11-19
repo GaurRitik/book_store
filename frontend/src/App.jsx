@@ -8,6 +8,9 @@ import DetailOfBook from './pages/DetailOfBook'
 import EditBook from './pages/EditBook'
 import Home from './pages/Home'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" >
@@ -35,6 +38,7 @@ const App = () => {
 
   return <>
  <RouterProvider router={router}/>
+ <ToastContainer />
   </>;
 };
 

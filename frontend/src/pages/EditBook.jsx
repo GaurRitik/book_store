@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
+import { toast } from "react-toastify";
 
 const EditBook = () => {
   const [book, setBook] = useState({});
@@ -51,7 +52,7 @@ const EditBook = () => {
       
       const res = await axios.put(`/api/books/${id}`, data);
       console.log("Response: ", res.data.message);
-
+      toast.success("Book Updated successfully")
       //to home page
       navigate("/");
     } catch (err) {

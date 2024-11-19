@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react'
 import axios from "axios";
 import Loading from '../components/Loading'
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const DeleteBook = () => {
@@ -30,6 +31,7 @@ const DeleteBook = () => {
     try{
       const res = await axios.delete(`/api/books/${id}`);
       console.log(res.data);
+      toast.success("Deleted Successfully")
       navigate("/");
     }
     catch(err){
