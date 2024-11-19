@@ -21,7 +21,9 @@ router.post("/", async (req, res) => {
 
     //added new document to the db
     const book = await Book.create(newBook);
-    res.status(201).send(book);
+    return res.status(201).send({
+      message:"New Book is created"
+    });
   } catch (error) {
     console.log("Error: ", error);
   }
