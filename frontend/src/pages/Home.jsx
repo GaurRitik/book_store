@@ -15,7 +15,6 @@ const Home = () => {
         const res = await axios.get("/api/books");
         const booksData = res.data.data;
         setBooks(booksData);
-        console.log("booksdata: ", booksData);
         setIsLoading(false);
       } catch (err) {
         console.log(`Fetching books: ${err}`);
